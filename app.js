@@ -16,12 +16,12 @@ const s3 = new S3Client({
 // Function to generate a pre-signed URL for uploading
 async function generateUploadURL(key) {
   const command = new PutObjectCommand({
-    Bucket: 'testmybucket-babugh',  // replace with your bucket name
+    Bucket: 'testmybucket-babugh', 
     Key: key,
-    ContentType: 'application/octet-stream', // specify the content type if needed
+    ContentType: 'application/octet-stream',
   });
 
-  // Generate a pre-signed URL with a 15-minute expiration time (900 seconds)
+
   const url = await getSignedUrl(s3, command, { expiresIn: 900 });
   return url;
 }
@@ -38,7 +38,7 @@ async function generateDownloadURL(key) {
   return url;
 }
 
-// Example usage:
+
 (async () => {
   const uploadUrl = await generateUploadURL('Screenshot from 2024-09-26 21-46-31.png');
   console.log('Upload URL:', uploadUrl);
